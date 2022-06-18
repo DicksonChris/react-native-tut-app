@@ -21,9 +21,7 @@ const DirectoryScreen = ({ navigation }) => {
     <FlatList
       data={campsites}
       renderItem={renderDirectoryItem}
-      keyExtractor={(item) => {
-        item.id.toString()
-      }}
+      keyExtractor={(item) => item.id.toString()}
     />
   )
 }
