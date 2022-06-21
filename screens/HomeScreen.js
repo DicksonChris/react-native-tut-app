@@ -1,9 +1,23 @@
 import { ScrollView, Text, View } from 'react-native'
 import { Card } from 'react-native-elements'
 import { useSelector } from 'react-redux'
+import Loading from '../components/LoadingComponent'
 import { baseUrl } from '../shared/baseUrl'
 
-export const FeaturedItem = ({ item }) => {
+export const FeaturedItem = (props) => {
+  const { item } = props
+
+  if (props.isLoading) {
+    return <Loading />
+  }
+  if (props.errMess) {
+    return (
+      <View>
+        <Text>{props.errMess}</Text>
+      </View>
+    )
+  }
+
   if (item) {
     return (
       <Card containerStyle={{ padding: 0 }}>
@@ -12,8 +26,8 @@ export const FeaturedItem = ({ item }) => {
             <Text
               style={{
                 color: 'white',
-                textAlign: 'center',
                 fontSize: 20,
+                textAlign: 'center',
               }}
             >
               {item.name}
@@ -38,9 +52,17 @@ const HomeScreen = () => {
 
   return (
     <ScrollView>
-      <FeaturedItem item={featCampsite} />
-      <FeaturedItem item={featPromotion} />
-      <FeaturedItem item={featPartner} />
+      <FeaturedItem
+        item={featCampsite}
+        isLoading={campsites.isLoading}
+        errMess={campsites.errMess}
+      />
+      <FeaturedItem
+        item={featPromotion}
+        isLoading={promotions.isLoading}
+        errMess={promotions.errMess}
+      />
+      <FeaturedItem item={featPartner} isLoading={partners.isLoading} errMess={partners.errMess} />
     </ScrollView>
   )
 }

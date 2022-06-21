@@ -16,14 +16,14 @@ const RenderCampsite = (props) => {
         </Card.Image>
         <Text style={{ margin: 20 }}>{campsite.description}</Text>
         <Icon
-          name={props.isFavorite ? 'heart' : 'heart-o'}
-          type='font-awesome'
           color='#f50'
-          raised
-          reverse
+          name={props.isFavorite ? 'heart' : 'heart-o'}
           onPress={() =>
             props.isFavorite ? console.log('Already set as a favorite') : props.markFavorite()
           }
+          raised
+          reverse
+          type='font-awesome'
         />
       </Card>
     )
