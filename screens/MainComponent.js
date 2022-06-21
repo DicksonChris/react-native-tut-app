@@ -1,7 +1,7 @@
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
-  DrawerItemList,
+  DrawerItemList
 } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
 import Constants from 'expo-constants'
