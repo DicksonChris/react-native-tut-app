@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
-import Loading from '../components/LoadingComponent'
-import { baseUrl } from '../shared/baseUrl'
 import { SwipeRow } from 'react-native-swipe-list-view'
+import { useDispatch, useSelector } from 'react-redux'
+import Loading from '../components/LoadingComponent'
 import { toggleFavorite } from '../features/favorites/favoritesSlice'
+import { baseUrl } from '../shared/baseUrl'
 
 const FavoritesScreen = ({ navigation }) => {
   const { campsitesArray, isLoading, errMess } = useSelector((state) => state.campsites)
@@ -17,9 +17,26 @@ const FavoritesScreen = ({ navigation }) => {
         <View style={styles.deleteView}>
           <TouchableOpacity
             style={styles.deleteTouchable}
-            onPress={() => {
-              dispatch(toggleFavorite(campsite.id))
-            }}
+            onPress={() =>
+              Alert.alert(
+                'Delete Favorite?',
+                'Are you sure you wish to delete the favorite campsite ' + campsite.name + '?',
+                [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log(campsite.name + 'Not Deleted'),
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      dispatch(toggleFavorite(campsite.id))
+                    },
+                  },
+                ],
+                { cancelable: false } // This prevents the user from being able to cancel the alert by tapping outside of it
+              )
+            }
           >
             <Text style={styles.deleteText}>Delete</Text>
           </TouchableOpacity>
