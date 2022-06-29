@@ -20,6 +20,7 @@ import ContactScreen from './ContactScreen'
 import DirectoryScreen from './DirectoryScreen'
 import HomeScreen from './HomeScreen'
 import ReservationScreen from './ReservationScreen'
+import FavoritesScreen from './FavoritesScreen'
 
 const Drawer = createDrawerNavigator()
 
@@ -108,6 +109,29 @@ const ReservationNavigator = () => {
           headerLeft: () => (
             <Icon
               name='tree'
+              type='font-awesome'
+              iconStyle={styles.stackIcon}
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const FavoritesNavigator = () => {
+  const Stack = createStackNavigator()
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name='Favorites'
+        component={FavoritesScreen}
+        options={({ navigation }) => ({
+          title: 'Favorite Campsites',
+          headerLeft: () => (
+            <Icon
+              name='heart'
               type='font-awesome'
               iconStyle={styles.stackIcon}
               onPress={() => navigation.toggleDrawer()}
@@ -212,6 +236,16 @@ const Main = () => {
             title: 'Reserve Campsite',
             drawerIcon: ({ color }) => (
               <Icon name='tree' type='font-awesome' size={24} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name='FavoritesCampsite'
+          component={FavoritesNavigator}
+          options={{
+            title: 'My Favorites',
+            drawerIcon: ({ color }) => (
+              <Icon name='heart' type='font-awesome' size={24} color={color} />
             ),
           }}
         />
