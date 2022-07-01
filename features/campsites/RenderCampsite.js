@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, Alert, PanResponder } from 'react-native'
 import { useRef } from 'react'
+import { Alert, PanResponder, StyleSheet, Text, View } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 import { Card, Icon } from 'react-native-elements'
 import { baseUrl } from '../../shared/baseUrl'
-import * as Animatable from 'react-native-animatable'
 
 const RenderCampsite = (props) => {
   const { campsite } = props
