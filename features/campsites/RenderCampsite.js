@@ -35,10 +35,10 @@ const RenderCampsite = (props) => {
           ],
           { cancelable: false }
         )
-      } else if (isRightSwipe(gestureState)) { 
+      } else if (isRightSwipe(gestureState)) {
         props.onShowModal()
       }
-    }, 
+    },
   })
 
   if (campsite) {
